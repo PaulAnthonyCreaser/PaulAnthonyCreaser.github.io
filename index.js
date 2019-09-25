@@ -57,12 +57,12 @@ function getStream() {
             error => handleError()
           );
           }
-        }
+          getDevices().then(gotDevices);
+    }
 }
 
 getStream()
 
-getDevices().then(gotDevices);
 
 function handleError(error) {
   console.error('Error: ', error);
