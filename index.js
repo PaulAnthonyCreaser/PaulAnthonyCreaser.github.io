@@ -37,8 +37,6 @@ function getStream() {
     });
   }
 
-  getStream().then(getDevices).then(gotDevices);
-  
   const videoSource = videoSelect.value;
 
   if ( videoSource.length > 0) {
@@ -61,6 +59,10 @@ function getStream() {
           }
         }
 }
+
+getStream()
+
+getDevices().then(gotDevices);
 
 function handleError(error) {
   console.error('Error: ', error);
