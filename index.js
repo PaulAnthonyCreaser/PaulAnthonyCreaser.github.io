@@ -7,7 +7,7 @@ let net;
 
 videoSelect.onchange = getStream;
 
-getStream().then(getDevices).then(gotDevices);
+
 
 function getDevices() {
   return navigator.mediaDevices.enumerateDevices();
@@ -36,6 +36,9 @@ function getStream() {
       track.stop();
     });
   }
+
+  getStream().then(getDevices).then(gotDevices);
+  
   const videoSource = videoSelect.value;
 
   if ( videoSource.length > 0) {
