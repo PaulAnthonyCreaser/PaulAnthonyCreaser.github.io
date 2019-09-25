@@ -36,7 +36,6 @@ function getStream() {
   }
   const videoSource = videoSelect.value;
   console.log(videoSource)
-  console.log(videoSource.length)
 
   if ( videoSource.length > 0) {
     const constraints = {
@@ -47,10 +46,7 @@ function getStream() {
     navigator.getUserMedia = navigator.getUserMedia ||
         navigatorAny.webkitGetUserMedia || navigatorAny.mozGetUserMedia ||
         navigatorAny.msGetUserMedia;
-        console.log("Setup")
-        console.log(constraints)
         if (navigator.getUserMedia)  {
-          //video: true}
           navigator.getUserMedia(constraints,
             stream => {
               webcamElement.srcObject = stream;
@@ -91,13 +87,9 @@ async function setupWebcam() {
 
 async function app() {
   console.log('Loading mobilenet..');
-
   // Load the model.
   net = await mobilenet.load();
   console.log('Sucessfully loaded model');
-
-  //await setupWebcam();
-
   // Reads an image from the webcam and associates it with a specific class
   // index.
   const addExample = classId => {
@@ -139,9 +131,6 @@ async function app() {
       if ( confidence < 0.8 ) {
         item = "Unknown";
       }
-      //document.getElementById('console').innerText = `
-      //  prediction: ${classes[result.classIndex]} probability: ${result.confidences[result.classIndex]}
-      //`
       if ( item == "Unknown") {
         document.getElementById('console').innerText = `
         Prediction: ${item}
