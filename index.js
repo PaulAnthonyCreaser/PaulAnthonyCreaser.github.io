@@ -31,8 +31,8 @@ function gotDevices(deviceInfos) {
 }
 
 function getStream() {
-  if (window.stream) {
-    window.stream.getTracks().forEach(track => {
+  if (webcamElement.srcObject) {
+    webcamElement.srcObject.getTracks().forEach(track => {
       track.stop();
     });
   }
