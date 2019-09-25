@@ -21,8 +21,7 @@ function gotDevices(deviceInfos) {
   option.value = "None";
   option.text  = "None"
   videoSelect.appendChild(option);
-  
-  videoSelect.appendChild("None");
+
   for (const deviceInfo of deviceInfos) {
     const option = document.createElement('option');
     option.value = deviceInfo.deviceId;
@@ -41,7 +40,6 @@ function getStream() {
     });
   }
   const videoSource = videoSelect.value;
-  console.log(videoSource)
 
   if ( videoSource.length > 0) {
     const constraints = {
