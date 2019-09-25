@@ -1,12 +1,94 @@
-<!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Transfer Learning Demo</title>
-</head>
+  <head>
+    <!-- Load the latest version of TensorFlow.js -->
+   <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+   <script src="https://unpkg.com/@tensorflow-models/mobilenet"></script>
+   <script src="https://unpkg.com/@tensorflow-models/knn-classifier"></script>
+    <style>
+    .button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    }
 
-<body>
-Content of the document......
-</body>
+    .button:hover {
+    background-color: green;
+    }
+    </style>
+  </head>
+  <body>
+    <h2 align="center">Transfer Learning Demo</h1>
 
+    <h3>Video Display</h3>
+    <table style="width:80%">
+      <tr>
+      <td rowspan="5" 4>
+        <div class="select">
+        <label for="videoSource">Video Source: </label><select id="videoSource"></select>
+        </div>
+      </td>
+      <td rowspan="5">
+        <div class="video">
+        <!-- Add an image that we will use to test -->
+        <video autoplay playsinline muted id="webcam" width="250" height="250"></video>
+        </div>
+      </td>
+      <td>
+        <form>
+          <input size="10" id="text-a" type=text>
+        </form>
+      </td>
+      <td>
+        <button class="button" id="class-a">Set 1</button>
+      </td>
+      </tr>
+      <tr>
+        <td>
+          <form>
+            <input size="10" id="text-b" type=text>
+          </form>
+        </td>
+        <td>
+          <button class="button" id="class-b">Set 2</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <form>
+            <input size="10" id="text-c" type=text>
+          </form>
+        </td>
+        <td>
+          <button class="button" id="class-c">Set 3</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <form>
+            <input size="10" id="text-d" type=text>
+          </form>
+        </td>
+        <td>
+          <button class="button" id="class-d">Set 4</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <form>
+            <input size="10" id="text-e" type=text>
+          </form>
+        </td>
+        <td>
+          <button class="button" id="class-e">Set 5</button>
+        </td>
+      </tr>
+    </table>
+    <h3>Prediction</h3>
+    <div id="console"></div>
+    <script src="index.js"></script>
+  </body>
 </html>
