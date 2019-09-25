@@ -65,7 +65,7 @@ getStream()
 
 
 function handleError(error) {
-  console.error('Error: ', error);
+  console.log('Error: ', error);
 }
 
 async function setupWebcam() {
