@@ -17,6 +17,7 @@ function getDevices() {
 function gotDevices(deviceInfos) {
   window.deviceInfos = deviceInfos; // make available to console
   console.log('Available input and output devices:', deviceInfos);
+  videoSelect.appendChild("None");
   for (const deviceInfo of deviceInfos) {
     const option = document.createElement('option');
     option.value = deviceInfo.deviceId;
