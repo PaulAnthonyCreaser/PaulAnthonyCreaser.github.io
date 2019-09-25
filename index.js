@@ -7,16 +7,14 @@ let net;
 
 videoSelect.onchange = getStream;
 
-getDevices().then(gotDevices);
+getStream().then(getDevices).then(gotDevices);
 
 function getDevices() {
-  // AFAICT in Safari this only gets default devices until gUM is called :/
   return navigator.mediaDevices.enumerateDevices();
 }
 
 function gotDevices(deviceInfos) {
   window.deviceInfos = deviceInfos; // make available to console
-  console.log('Available input and output devices:', deviceInfos);
   const option = document.createElement('option');
   option.value = "None";
   option.text  = "None"
@@ -31,8 +29,7 @@ function gotDevices(deviceInfos) {
     }
   }
 }
-
-
+¥
 function getStream() {
   if (window.stream) {
     window.stream.getTracks().forEach(track => {
@@ -62,12 +59,9 @@ function getStream() {
         }
 }
 
-
 function handleError(error) {
   console.error('Error: ', error);
 }
-
-
 
 async function setupWebcam() {
   return new Promise((resolve, reject) => {
@@ -75,7 +69,6 @@ async function setupWebcam() {
     navigator.getUserMedia = navigator.getUserMedia ||
         navigatorAny.webkitGetUserMedia || navigatorAny.mozGetUserMedia ||
         navigatorAny.msGetUserMedia;
-    console.log("Setup")
     if (navigator.getUserMedia) {
       navigator.getUserMedia({video: true},
         stream => {
