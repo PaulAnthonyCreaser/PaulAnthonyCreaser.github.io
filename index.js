@@ -14,6 +14,7 @@ function getDevices() {
 }
 
 function gotDevices(deviceInfos) {
+  console.log('Got Devices ');
   window.deviceInfos = deviceInfos; // make available to console
   const option = document.createElement('option');
   option.value = "None";
@@ -31,6 +32,7 @@ function gotDevices(deviceInfos) {
 }
 
 function getStream() {
+  console.log('Get stream ');
   if (webcamElement.srcObject) {
     webcamElement.srcObject.getTracks().forEach(track => {
       track.stop();
@@ -70,6 +72,7 @@ function handleError(error) {
 }
 
 async function setupWebcam() {
+  console.log('Setup Web Cam ');
   return new Promise((resolve, reject) => {
     const navigatorAny = navigator;
     navigator.getUserMedia = navigator.getUserMedia ||
