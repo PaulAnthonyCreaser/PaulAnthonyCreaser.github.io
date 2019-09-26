@@ -68,9 +68,15 @@ function handleError(error) {
 
 async function app() {
   console.log('Loading mobilenet..');
+  document.getElementById('console').innerText = `
+  Loading mobilenet
+  `
   // Load the model.
   net = await mobilenet.load();
   console.log('Sucessfully loaded model');
+  document.getElementById('console').innerText = `
+  Sucessfully loaded model
+  `
   // Reads an image from the webcam and associates it with a specific class
   // index.
   const addExample = classId => {
@@ -87,6 +93,10 @@ async function app() {
   document.getElementById('class-c').addEventListener('click', () => addExample(2));
   document.getElementById('class-d').addEventListener('click', () => addExample(3));
   document.getElementById('class-e').addEventListener('click', () => addExample(4));
+
+  document.getElementById('console').innerText = `
+  Button set clicks setup
+  `
 
   while (true) {
     if (classifier.getNumClasses() > 0) {
