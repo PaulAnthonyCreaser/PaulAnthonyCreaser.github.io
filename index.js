@@ -1,26 +1,25 @@
+'use strict';
 
 var classifier    = knnClassifier.create();
 var webcamElement = document.getElementById('webcam');
 var videoSelect   = document.querySelector('select#videoSource');
-
 let net;
+
+
 
 videoSelect.onchange = getStream;
 
-
-
 function getDevices() {
-  console.log("Devices ", navigator.mediaDevices.enumerateDevices() );
   return navigator.mediaDevices.enumerateDevices();
 }
 
 function gotDevices(deviceInfos) {
   console.log('Got Devices ');
   window.deviceInfos = deviceInfos; // make available to console
-  const option = document.createElement('option');
-  option.value = "None";
-  option.text  = "None"
-  videoSelect.appendChild(option);
+  //const option = document.createElement('option');
+  //option.value = "None";
+  //option.text  = "None"
+  //videoSelect.appendChild(option);
 
   for (const deviceInfo of deviceInfos) {
     const option = document.createElement('option');
@@ -36,10 +35,18 @@ function gotDevices(deviceInfos) {
   }
 }
 
+function gotStream( stream ) {
+  console.log('Got stream ');
+  window.stream = stream;
+  videoSelect.selectedIndex = [ ...videoSelect.options].findIndex(option => option.text == stream.getVideoTracks()[0].label);
+  webcamElement.srcObject = stream;
+  webcamElement.addEventListener('loadeddata',  () => resolve(), false);
+}
+
 function getStream() {
   console.log('Get stream ');
-  if (webcamElement.srcObject) {
-    webcamElement.srcObject.getTracks().forEach(track => {
+  if (window.stream) {
+    window.stream.getTracks().forEach(track => {
       track.stop();
     });
   }
@@ -48,65 +55,52 @@ function getStream() {
 
   console.log("Video source", videoSource);
 
-  if ( videoSource.length > 0) {
-    const constraints = {
-    video: {deviceId: videoSource ? {exact: videoSource} : undefined}
-    };
+  const constraints = {
+      video: {deviceId: videoSource ? {exact: videoSource} : undefined}
+  };
 
-    const navigatorAny = navigator;
-    navigator.getUserMedia = navigator.getUserMedia ||
-        navigatorAny.webkitGetUserMedia || navigatorAny.mozGetUserMedia ||
-        navigatorAny.msGetUserMedia;
-        if (navigator.getUserMedia)  {
-          navigator.getUserMedia(constraints,
-            stream => {
-              webcamElement.srcObject = stream;
-              webcamElement.addEventListener('loadeddata',  () => resolve(), false);
-            },
-            error => handleError()
-          );
-          }
-
-    }
+  //return navigator.getUserMedia(constraints,
+  //      stream => {
+  //            webcamElement.srcObject = stream;
+  //            webcamElement.addEventListener('loadeddata',  () => resolve(), false);
+  //      },
+  //      error => handleError()
+  //).then(gotStream).catch(handleError);
+  return navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(handleError);
 }
 
-console.log('Loading mobilenet..');
-// Load the model.
-net = mobilenet.load();
-console.log('Sucessfully loaded model');
 console.log("get stream");
 console.log("get devices");
-getDevices().then(gotDevices);
-getStream()// .then(getDevices).then(gotDevices);
+getStream().then(getDevices).then(gotDevices);
 
 function handleError(error) {
   console.log('Error: ', error);
 }
 
-async function setupWebcam() {
-  console.log('Setup Web Cam ');
-  return new Promise((resolve, reject) => {
-    const navigatorAny = navigator;
-    navigator.getUserMedia = navigator.getUserMedia ||
-        navigatorAny.webkitGetUserMedia || navigatorAny.mozGetUserMedia ||
-        navigatorAny.msGetUserMedia;
-    if (navigator.getUserMedia) {
-      navigator.getUserMedia({video: true},
-        stream => {
-          webcamElement.srcObject = stream;
-          webcamElement.addEventListener('loadeddata',  () => resolve(), false);
-        },
-        error => reject());
-    } else {
-      reject();
-    }
-  });
-}
+//async function setupWebcam() {
+//  console.log('Setup Web Cam ');
+//  return new Promise((resolve, reject) => {
+//    const navigatorAny = navigator;
+//    navigator.getUserMedia = navigator.getUserMedia ||
+//        navigatorAny.webkitGetUserMedia || navigatorAny.mozGetUserMedia ||
+//        navigatorAny.msGetUserMedia;
+//    if (navigator.getUserMedia) {
+//      navigator.getUserMedia({video: true},
+//        stream => {
+//          webcamElement.srcObject = stream;
+//          webcamElement.addEventListener('loadeddata',  () => resolve(), false);
+//        },
+//        error => reject());
+//    } else {
+//      reject();
+//    }
+//  });
+//}
 
 async function app() {
-  //console.log('Loading mobilenet..');
+  console.log('Loading mobilenet..');
   // Load the model.
-  //net = await mobilenet.load();
+  net = await mobilenet.load();
   console.log('Sucessfully loaded model');
   // Reads an image from the webcam and associates it with a specific class
   // index.
