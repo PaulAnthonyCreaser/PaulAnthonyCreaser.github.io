@@ -62,8 +62,6 @@ function getStream() {
   return navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(handleError);
 }
 
-getStream().then(getDevices).then(gotDevices);
-
 function handleError(error) {
   console.log('Error: ', error);
 }
@@ -79,6 +77,9 @@ async function app() {
   predictText.innerText = `
   Sucessfully loaded model
   `
+
+  getStream().then(getDevices).then(gotDevices);
+  
   // Reads an image from the webcam and associates it with a specific class
   // index.
   const addExample = classId => {
