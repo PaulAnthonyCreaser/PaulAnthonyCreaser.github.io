@@ -72,7 +72,7 @@ function getStream() {
 
 console.log('Loading mobilenet..');
 // Load the model.
-net = await mobilenet.load();
+net = mobilenet.load();
 console.log('Sucessfully loaded model');
 console.log("get stream");
 console.log("get devices");
