@@ -124,17 +124,14 @@ async function app() {
         item = "Unknown";
       }
       if ( item == "Unknown") {
-        predictText.innerText = `
-        Prediction: ${item}
+        predictText.innerText = `Prediction: ${item}
         `
       } else {
-        predictText.innerText = `
-        Prediction: ${item} Probability: ${result.confidences[result.classIndex]}
+        predictText.innerText = `Prediction: ${item} Probability: ${result.confidences[result.classIndex]}
         `
       }
     } else {
-      predictText.innerText = `
-      Nothing to detect
+      predictText.innerText = `Nothing to detect
       `
     }
     await tf.nextFrame();
