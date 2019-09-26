@@ -3,7 +3,7 @@
 var classifier     = knnClassifier.create();
 var webcamElement  = document.getElementById('webcam');
 var videoSelect    = document.querySelector('select#videoSource');
-var predictText    = document.getElementById('console');
+var predictText    = document.getElementById('prediction');
 let net;
 
 
@@ -108,15 +108,15 @@ async function app() {
       const classes = ['A', 'B', 'C', 'D', 'E'];
       var item = "Unknown"
       if ( result.classIndex == 0) {
-        item = document.getElementById('text-a').value;
+        item = "Item 1";
       } else if ( result.classIndex == 1) {
-        item = document.getElementById('text-b').value;
+        item = "Item 2";
       } else if ( result.classIndex == 2) {
-        item = document.getElementById('text-c').value;
+        item = "Item 3";
       } else if ( result.classIndex == 3) {
-        item = document.getElementById('text-d').value;
+        item = "Item 4";
       } else if ( result.classIndex == 4) {
-        item = document.getElementById('text-e').value;
+        item = "Item 5";
       }
 
       var confidence =  result.confidences[result.classIndex];

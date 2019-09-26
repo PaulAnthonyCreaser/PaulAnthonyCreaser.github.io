@@ -6,13 +6,34 @@
    <script src="https://unpkg.com/@tensorflow-models/knn-classifier"></script>
     <style>
     .button {
+    border-radius: 100px;
     background-color: #4CAF50;
     border: none;
     color: white;
-    padding: 5px 10px;
+    padding: 30px 30px;
     text-align: center;
-    font-size: 12px;
+    font-size: 20px;
+    width: 130px;
+    height: 100px;
     cursor: pointer;
+    }
+
+    .prediction {
+    border-radius: 10px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 30px 30px;
+    text-align: center;
+    font-size: 20px;
+    width: 700px;
+    height: 150px;
+    cursor: pointer;
+    }
+
+    .center {
+      margin: 0 auto;
+      width = 600
     }
 
     .button:hover {
@@ -26,72 +47,41 @@
     <h3>Video Display</h3>
     <table style="width:80%">
       <tr>
-      <td rowspan="5" 4>
+      <td colspan="5">
         <div class="select">
         <label for="videoSource">Video Source: </label><select id="videoSource"></select>
         </div>
       </td>
-      <td rowspan="5">
+      </tr>
+      <tr>
+      <td colspan="5">
         <div class="video">
         <!-- Add an image that we will use to test -->
-        <video autoplay playsinline muted id="webcam" width="250" height="250"></video>
+        <video class='center' autoplay playsinline muted id="webcam" width="700" height="700"></video>
         </div>
       </td>
+    </tr>
+    <tr>
       <td>
-        <form>
-          <input size="10" id="text-a" type=text>
-        </form>
+        <button class="button" id="class-a">Item 1</button>
       </td>
       <td>
-        <button class="button" id="class-a">Set 1</button>
+        <button class="button" id="class-b">Item 2</button>
       </td>
-      </tr>
-      <tr>
-        <td>
-          <form>
-            <input size="10" id="text-b" type=text>
-          </form>
-        </td>
-        <td>
-          <button class="button" id="class-b">Set 2</button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <form>
-            <input size="10" id="text-c" type=text>
-          </form>
-        </td>
-        <td>
-          <button class="button" id="class-c">Set 3</button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <form>
-            <input size="10" id="text-d" type=text>
-          </form>
-        </td>
-        <td>
-          <button class="button" id="class-d">Set 4</button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <form>
-            <input size="10" id="text-e" type=text>
-          </form>
-        </td>
-        <td>
-          <button class="button" id="class-e">Set 5</button>
-        </td>
-      </tr>
+      <td>
+        <button class="button" id="class-c">Item 3</button>
+      </td>
+      <td>
+        <button class="button" id="class-d">Item 4</button>
+      </td>
+      <td>
+        <button class="button" id="class-e">Item 5</button>
+      </td>
+    </tr>
     </table>
     <h3>Prediction</h3>
-    <div id="console">
-      Detected name here
-    </div>
     <div id="bottom">
+      <button class="prediction" id="prediction">None</button>
     </div>
     <script src="index.js"></script>
   </body>
