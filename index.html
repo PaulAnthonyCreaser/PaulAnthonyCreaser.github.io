@@ -5,6 +5,16 @@
    <script src="https://unpkg.com/@tensorflow-models/mobilenet"></script>
    <script src="https://unpkg.com/@tensorflow-models/knn-classifier"></script>
     <style>
+
+    h1 {
+    display: block;
+    font-size: 4em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+    }
     .button {
     border-radius: 100px;
     background-color: #4CAF50;
@@ -14,7 +24,7 @@
     text-align: center;
     font-size: 30px;
     width: 130px;
-    height: 100px;
+    height: 150px;
     cursor: pointer;
     }
 
@@ -31,6 +41,13 @@
     cursor: pointer;
     }
 
+    .select {
+      font-size: 30px;
+    }
+
+    .dropdown {
+      font-size: 30px;
+    }
     .center {
       margin: 0 auto;
       width = 600
@@ -43,13 +60,11 @@
   </head>
   <body>
     <h1 align="center">Transfer Learning Demo</h1>
-
-    <h2>Video Display</h2>
     <table style="width:80%">
       <tr>
       <td colspan="5">
         <div class="select">
-        <label for="videoSource">Video Source: </label><select id="videoSource"></select>
+        <label for="videoSource">Video Source: </label><select class="dropdown" id="videoSource"></select>
         </div>
       </td>
       </tr>
@@ -79,7 +94,6 @@
       </td>
     </tr>
     </table>
-    <h2>Prediction</h2>
     <div id="bottom">
       <button class="prediction" id="prediction">None</button>
     </div>
