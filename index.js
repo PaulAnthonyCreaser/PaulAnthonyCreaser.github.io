@@ -80,9 +80,8 @@ async function app() {
   Sucessfully loaded model
   `
 
-  //getStream().then(getDevices).then(gotDevices);
-
-  getDevices().then(gotDevices).then(getStream).then(getDevices).then(gotDevices);
+  getStream().then(getDevices).then(gotDevices);
+  //getDevices().then(gotDevices).then(getStream).then(getDevices).then(gotDevices);
 
   // Reads an image from the webcam and associates it with a specific class
   // index.
