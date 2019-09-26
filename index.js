@@ -10,6 +10,7 @@ videoSelect.onchange = getStream;
 
 
 function getDevices() {
+  console.log(navigator.mediaDevices.enumerateDevices() );
   return navigator.mediaDevices.enumerateDevices();
 }
 
@@ -24,8 +25,8 @@ function gotDevices(deviceInfos) {
   for (const deviceInfo of deviceInfos) {
     const option = document.createElement('option');
     console.log( deviceInfo );
-    option.value = deviceInfo.deviceId;
     if (deviceInfo.kind === 'videoinput') {
+      option.value = deviceInfo.deviceId;
       console.log(" Source  ", deviceInfo.deviceId );
       console.log(" Source  ", deviceInfo );
       console.log(" Source  ", deviceInfo.label );
