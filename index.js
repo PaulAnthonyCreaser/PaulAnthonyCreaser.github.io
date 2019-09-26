@@ -38,7 +38,9 @@ function gotDevices(deviceInfos) {
 function gotStream( stream ) {
   console.log('Got stream ');
   window.stream = stream;
-  //videoSelect.selectedIndex = [ ...videoSelect.options].findIndex(option => option.text == stream.getVideoTracks()[0].label);
+  console.log("Selected items");
+  console.log(videoSelect.options);
+  videoSelect.selectedIndex = [ ...videoSelect.options].findIndex(option => option.text == stream.getVideoTracks()[0].label);
   webcamElement.srcObject = stream;
   webcamElement.addEventListener('loadeddata',  () => resolve(), false);
 }
@@ -78,8 +80,10 @@ async function app() {
   Sucessfully loaded model
   `
 
-  getStream().then(getDevices).then(gotDevices);
-  
+  //getStream().then(getDevices).then(gotDevices);
+
+  getDevices().then(gotDevices).then(getStream).then(getDevices).then(gotDevices);
+
   // Reads an image from the webcam and associates it with a specific class
   // index.
   const addExample = classId => {
