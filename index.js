@@ -16,10 +16,6 @@ function getDevices() {
 function gotDevices(deviceInfos) {
   console.log('Got Devices ');
   window.deviceInfos = deviceInfos; // make available to console
-  //const option = document.createElement('option');
-  //option.value = "None";
-  //option.text  = "None"
-  //videoSelect.appendChild(option);
 
   for (const deviceInfo of deviceInfos) {
     const option = document.createElement('option');
@@ -59,13 +55,6 @@ function getStream() {
       video: {deviceId: videoSource ? {exact: videoSource} : undefined}
   };
 
-  //return navigator.getUserMedia(constraints,
-  //      stream => {
-  //            webcamElement.srcObject = stream;
-  //            webcamElement.addEventListener('loadeddata',  () => resolve(), false);
-  //      },
-  //      error => handleError()
-  //).then(gotStream).catch(handleError);
   return navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(handleError);
 }
 
@@ -76,26 +65,6 @@ getStream().then(getDevices).then(gotDevices);
 function handleError(error) {
   console.log('Error: ', error);
 }
-
-//async function setupWebcam() {
-//  console.log('Setup Web Cam ');
-//  return new Promise((resolve, reject) => {
-//    const navigatorAny = navigator;
-//    navigator.getUserMedia = navigator.getUserMedia ||
-//        navigatorAny.webkitGetUserMedia || navigatorAny.mozGetUserMedia ||
-//        navigatorAny.msGetUserMedia;
-//    if (navigator.getUserMedia) {
-//      navigator.getUserMedia({video: true},
-//        stream => {
-//          webcamElement.srcObject = stream;
-//          webcamElement.addEventListener('loadeddata',  () => resolve(), false);
-//        },
-//        error => reject());
-//    } else {
-//      reject();
-//    }
-//  });
-//}
 
 async function app() {
   console.log('Loading mobilenet..');
@@ -140,7 +109,7 @@ async function app() {
       }
 
       var confidence =  result.confidences[result.classIndex];
-      if ( confidence < 0.8 ) {
+      if ( confidence < 0.7 ) {
         item = "Unknown";
       }
       if ( item == "Unknown") {
@@ -152,6 +121,10 @@ async function app() {
         Prediction: ${item} Probability: ${result.confidences[result.classIndex]}
         `
       }
+    } else {
+      document.getElementById('console').innerText = `
+      Nothing to detect
+      `
     }
     await tf.nextFrame();
   }
