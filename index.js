@@ -1,8 +1,9 @@
 'use strict';
 
-var classifier    = knnClassifier.create();
-var webcamElement = document.getElementById('webcam');
-var videoSelect   = document.querySelector('select#videoSource');
+var classifier     = knnClassifier.create();
+var webcamElement  = document.getElementById('webcam');
+var videoSelect    = document.querySelector('select#videoSource');
+var predictText    = document.getElementById('console');
 let net;
 
 
@@ -68,13 +69,13 @@ function handleError(error) {
 
 async function app() {
   console.log('Loading mobilenet..');
-  document.getElementById('console').innerText = `
+  predictText.innerText = `
   Loading mobilenet
   `
   // Load the model.
   net = await mobilenet.load();
   console.log('Sucessfully loaded model');
-  document.getElementById('console').innerText = `
+  predictText.innerText = `
   Sucessfully loaded model
   `
   // Reads an image from the webcam and associates it with a specific class
@@ -94,7 +95,7 @@ async function app() {
   document.getElementById('class-d').addEventListener('click', () => addExample(3));
   document.getElementById('class-e').addEventListener('click', () => addExample(4));
 
-  document.getElementById('console').innerText = `
+  predictText.innerText = `
   Button set clicks setup
   `
 
@@ -123,16 +124,16 @@ async function app() {
         item = "Unknown";
       }
       if ( item == "Unknown") {
-        document.getElementById('console').innerText = `
+        predictText.innerText = `
         Prediction: ${item}
         `
       } else {
-        document.getElementById('console').innerText = `
+        predictText.innerText = `
         Prediction: ${item} Probability: ${result.confidences[result.classIndex]}
         `
       }
     } else {
-      document.getElementById('console').innerText = `
+      predictText.innerText = `
       Nothing to detect
       `
     }
