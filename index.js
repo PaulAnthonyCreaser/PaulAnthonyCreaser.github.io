@@ -70,8 +70,7 @@ function getStream() {
     }
 }
 
-//getStream()
-getDevices().then(gotDevices);
+getStream.then(getDevices).then(gotDevices);
 
 
 function handleError(error) {
