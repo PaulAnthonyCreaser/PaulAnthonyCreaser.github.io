@@ -11,8 +11,6 @@ var buttonD        = document.getElementById('class-d');
 var buttonE        = document.getElementById('class-e');
 let net;
 
-
-
 videoSelect.onchange = getStream;
 
 function getDevices() {
@@ -40,7 +38,7 @@ function gotDevices(deviceInfos) {
 function gotStream( stream ) {
   console.log('Got stream ');
   window.stream = stream;
-  videoSelect.selectedIndex = [ ...videoSelect.options].findIndex(option => option.text == stream.getVideoTracks()[0].label);
+  //videoSelect.selectedIndex = [ ...videoSelect.options].findIndex(option => option.text == stream.getVideoTracks()[0].label);
   webcamElement.srcObject = stream;
   webcamElement.addEventListener('loadeddata',  () => resolve(), false);
 }
@@ -64,8 +62,6 @@ function getStream() {
   return navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(handleError);
 }
 
-console.log("get stream");
-console.log("get devices");
 getStream().then(getDevices).then(gotDevices);
 
 function handleError(error) {
