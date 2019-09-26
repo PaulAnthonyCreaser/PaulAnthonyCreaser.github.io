@@ -70,6 +70,10 @@ function getStream() {
     }
 }
 
+console.log('Loading mobilenet..');
+// Load the model.
+net = await mobilenet.load();
+console.log('Sucessfully loaded model');
 console.log("get stream");
 console.log("get devices");
 getStream().then(getDevices).then(gotDevices);
@@ -99,9 +103,9 @@ async function setupWebcam() {
 }
 
 async function app() {
-  console.log('Loading mobilenet..');
+  //console.log('Loading mobilenet..');
   // Load the model.
-  net = await mobilenet.load();
+  //net = await mobilenet.load();
   console.log('Sucessfully loaded model');
   // Reads an image from the webcam and associates it with a specific class
   // index.
