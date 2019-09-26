@@ -70,7 +70,10 @@ function getStream() {
     }
 }
 
-//getStream.then(
+console.log("get stream");
+getStream()
+
+console.log("get devices");
 
 getDevices().then(gotDevices);
 
