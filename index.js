@@ -41,6 +41,8 @@ function getStream() {
 
   const videoSource = videoSelect.value;
 
+  console.log("Video source", videoSource);
+
   if ( videoSource.length > 0) {
     const constraints = {
     video: {deviceId: videoSource ? {exact: videoSource} : undefined}
