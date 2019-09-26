@@ -76,7 +76,8 @@ net = await mobilenet.load();
 console.log('Sucessfully loaded model');
 console.log("get stream");
 console.log("get devices");
-getStream().then(getDevices).then(gotDevices);
+getDevices().then(gotDevices);
+getStream()// .then(getDevices).then(gotDevices);
 
 function handleError(error) {
   console.log('Error: ', error);
