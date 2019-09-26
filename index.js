@@ -10,7 +10,7 @@ videoSelect.onchange = getStream;
 
 
 function getDevices() {
-  console.log(navigator.mediaDevices.enumerateDevices() );
+  console.log("Devices ", navigator.mediaDevices.enumerateDevices() );
   return navigator.mediaDevices.enumerateDevices();
 }
 
@@ -71,7 +71,6 @@ function getStream() {
 }
 
 getStream.then(getDevices).then(gotDevices);
-
 
 function handleError(error) {
   console.log('Error: ', error);
