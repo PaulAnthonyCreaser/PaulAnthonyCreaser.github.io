@@ -71,11 +71,8 @@ function getStream() {
 }
 
 console.log("get stream");
-getStream()
-
 console.log("get devices");
-
-getDevices().then(gotDevices);
+getStream().then(getDevices).then(gotDevices);
 
 function handleError(error) {
   console.log('Error: ', error);
