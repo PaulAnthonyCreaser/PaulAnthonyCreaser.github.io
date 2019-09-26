@@ -15,10 +15,10 @@ function getDevices() {
 
 function gotDevices(deviceInfos) {
   window.deviceInfos = deviceInfos; // make available to console
-  //const option = document.createElement('option');
-  //option.value = "None";
-  //option.text  = "None"
-  //videoSelect.appendChild(option);
+  const option = document.createElement('option');
+  option.value = "None";
+  option.text  = "None"
+  videoSelect.appendChild(option);
 
   for (const deviceInfo of deviceInfos) {
     const option = document.createElement('option');
