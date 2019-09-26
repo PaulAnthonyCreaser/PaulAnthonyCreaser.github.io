@@ -4,6 +4,11 @@ var classifier     = knnClassifier.create();
 var webcamElement  = document.getElementById('webcam');
 var videoSelect    = document.querySelector('select#videoSource');
 var predictText    = document.getElementById('prediction');
+var buttonA        = document.getElementById('class-a');
+var buttonB        = document.getElementById('class-b');
+var buttonC        = document.getElementById('class-c');
+var buttonD        = document.getElementById('class-d');
+var buttonE        = document.getElementById('class-e');
 let net;
 
 
@@ -89,11 +94,11 @@ async function app() {
   };
 
   // When clicking a button, add an example for that class.
-  document.getElementById('class-a').addEventListener('click', () => addExample(0));
-  document.getElementById('class-b').addEventListener('click', () => addExample(1));
-  document.getElementById('class-c').addEventListener('click', () => addExample(2));
-  document.getElementById('class-d').addEventListener('click', () => addExample(3));
-  document.getElementById('class-e').addEventListener('click', () => addExample(4));
+  buttonA.addEventListener('click', () => addExample(0));
+  buttonB.addEventListener('click', () => addExample(1));
+  buttonC.addEventListener('click', () => addExample(2));
+  buttonD.addEventListener('click', () => addExample(3));
+  buttonE.addEventListener('click', () => addExample(4));
 
   predictText.innerText = `
   Button set clicks setup
@@ -105,7 +110,11 @@ async function app() {
       const activation = net.infer(webcamElement, 'conv_preds');
       // Get the most likely class and confidences from the classifier module.
       const result = await classifier.predictClass(activation);
-      const classes = ['A', 'B', 'C', 'D', 'E'];
+
+      console.log(result);
+      console.log(result.confidences);
+      console.log(result.confidences.length);
+      console.log(result.confidences[0]);
       var item = "Unknown"
       if ( result.classIndex == 0) {
         item = "Item 1";
@@ -117,6 +126,88 @@ async function app() {
         item = "Item 4";
       } else if ( result.classIndex == 4) {
         item = "Item 5";
+      }
+
+      var classNum = Object.keys(result.confidences).length;
+      if ( classNum > 0 ) {
+        if ( result.confidences[0] == 0 ){
+          buttonA.style.backgroundColor = "#FF0000";
+          console.log("Red");
+        } else if ( result.confidences[0] < 0.4 ){
+          buttonA.style.backgroundColor = "#FF9E00";
+          console.log("Orange");
+        } else if ( result.confidences[0] < 0.8 ){
+          buttonA.style.backgroundColor = "#FFF600";
+          console.log("Yellow");
+        } else {
+          buttonA.style.backgroundColor = "#00FF00";
+          console.log("Green");
+        }
+      }
+
+      if ( classNum > 1 ) {
+        if ( result.confidences[1] == 0 ){
+          buttonB.style.backgroundColor = "#FF0000";
+          console.log("Red");
+        } else if ( result.confidences[1] < 0.4 ){
+          buttonB.style.backgroundColor = "#FF9E00";
+          console.log("Orange");
+        } else if ( result.confidences[1] < 0.8 ){
+          buttonB.style.backgroundColor = "#FFF600";
+          console.log("Yellow");
+        } else {
+          buttonB.style.backgroundColor = "#00FF00";
+          console.log("Green");
+        }
+      }
+
+
+      if ( classNum > 2 ) {
+        if ( result.confidences[2] == 0 ){
+          buttonC.style.backgroundColor = "#FF0000";
+          console.log("Red");
+        } else if ( result.confidences[2] < 0.4 ){
+          buttonC.style.backgroundColor = "#FF9E00";
+          console.log("Orange");
+        } else if ( result.confidences[2] < 0.8 ){
+          buttonC.style.backgroundColor = "#FFF600";
+          console.log("Yellow");
+        } else {
+          buttonC.style.backgroundColor = "#00FF00";
+          console.log("Green");
+        }
+      }
+
+      if ( classNum > 3 ) {
+        if ( result.confidences[3] == 0 ){
+          buttonD.style.backgroundColor = "#FF0000";
+          console.log("Red");
+        } else if ( result.confidences[3] < 0.4 ){
+          buttonD.style.backgroundColor = "#FF9E00";
+          console.log("Orange");
+        } else if ( result.confidences[3] < 0.8 ){
+          buttonD.style.backgroundColor = "#FFF600";
+          console.log("Yellow");
+        } else {
+          buttonD.style.backgroundColor = "#00FF00";
+          console.log("Green");
+        }
+      }
+
+      if ( classNum > 4 ) {
+        if ( result.confidences[4] == 0 ){
+          buttonE.style.backgroundColor = "#FF0000";
+          console.log("Red");
+        } else if ( result.confidences[4] < 0.4 ){
+          buttonE.style.backgroundColor = "#FF9E00";
+          console.log("Orange");
+        } else if ( result.confidences[4] < 0.8 ){
+          buttonE.style.backgroundColor = "#FFF600";
+          console.log("Yellow");
+        } else {
+          buttonE.style.backgroundColor = "#00FF00";
+          console.log("Green");
+        }
       }
 
       var confidence =  result.confidences[result.classIndex];
