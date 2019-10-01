@@ -49,7 +49,7 @@
     <br/>
     <table style="width:80%">
       <tr>
-      <td colspan="5">
+      <td>
         <div class="select">
         <label for="videoSource">Video Source: </label><select class="dropdown" id="videoSource"></select>
         </div>
@@ -57,32 +57,20 @@
       </tr>
       <tr>
       <td colspan="5">
-        <br/>
-        <br/>
         <div class="video">
         <!-- Add an image that we will use to test -->
         <video class='center' autoplay playsinline muted id="webcam" width="500" height="500"></video>
-        <br/>
-        <br/>
         </div>
       </td>
-      <td colspan="5">
-        <br/>
-        <br/>
+      </tr>
+      <tr>
+      <td>
+        <div">
         <canvas id="canvas" width="200" height="100" style="border:1px solid #000000;></canvas>
-        <br/>
-        <br/>
         </div>
       </td>
-    </tr>
+      </tr>
     </table>
-    <div>
-      <br/>
-      <br/>
-    </div>
-    <div id="bottom">
-      <button class="prediction" id="prediction">None</button>
-    </div>
     <script src="body.js"></script>
   </body>
 </html>

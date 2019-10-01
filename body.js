@@ -67,8 +67,7 @@ predictText.innerText = `
  Loading mobilenet
 `
 // Load the model.
-var net = bodyPix.load();
-//net = await bodyPix.load();
+var net = await bodyPix.load();
 console.log('Sucessfully loaded model');
 predictText.innerText = `
 Sucessfully loaded model
