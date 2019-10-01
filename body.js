@@ -3,7 +3,6 @@
 var webcamElement  = document.getElementById('webcam');
 var videoSelect    = document.querySelector('select#videoSource');
 var predictText    = document.getElementById('prediction');
-let net;
 
 videoSelect.onchange = getStream;
 
