@@ -62,20 +62,17 @@ function handleError(error) {
   console.log('Error: ', error);
 }
 
-async function load_model()
-{
-  console.log('Loading mobilenet..');
-  predictText.innerText = `
-  Loading mobilenet
-  `
-  // Load the model.
-  net = await bodyPix.load();
-  //net = await bodyPix.load();
-  console.log('Sucessfully loaded model');
-  predictText.innerText = `
-  Sucessfully loaded model
-  `
-}
+console.log('Loading mobilenet..');
+predictText.innerText = `
+ Loading mobilenet
+`
+// Load the model.
+var net = await bodyPix.load();
+//net = await bodyPix.load();
+console.log('Sucessfully loaded model');
+predictText.innerText = `
+Sucessfully loaded model
+`
 
 async function app() {
 
