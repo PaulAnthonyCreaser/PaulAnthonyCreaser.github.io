@@ -73,8 +73,6 @@ async function app() {
   predictText.innerText = `
   Sucessfully loaded model
   `
-  console.log( mobilenet);
-
   getStream().then(getDevices).then(gotDevices);
 
   while (true) {
@@ -83,7 +81,7 @@ async function app() {
         console.log('Predictions: ');
         console.log(predictions);
         predictText.innerText = `Prediction: ${predictions}`
-        //predictText.innerText = `Prediction: ${predictions[0].className}`
+        predictText.innerText = `Prediction: ${predictions[0].class}`
     });
 
     await tf.nextFrame();
