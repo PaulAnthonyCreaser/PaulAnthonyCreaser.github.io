@@ -83,6 +83,7 @@ async function app() {
       // Get the most likely class and confidences from the classifier module.
       var outputStride = 16;
       var segmentationThreshold = 0.5;
+      console.log(net);
       var segmentation = net.estimatePersonSegmentation(webcamElement, outputStride, segmentationThreshold);
       const rainbow = [
         [110, 64, 170], [106, 72, 183], [100, 81, 196], [92, 91, 206],
