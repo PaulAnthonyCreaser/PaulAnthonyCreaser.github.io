@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <!-- Load TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0"></script>
+    <!-- Load BodyPix -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@1.0.0"></script>
+    <style>
+
+    h1 {
+    display: block;
+    font-size: 4em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+    }
+
+    .prediction {
+    border-radius: 10px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 30px 30px;
+    text-align: center;
+    font-size: 50px;
+    width: 700px;
+    height: 150px;
+    cursor: pointer;
+    }
+
+    .select {
+      font-size: 30px;
+    }
+
+    .dropdown {
+      font-size: 30px;
+    }
+    .center {
+      margin: 0 auto;
+      width = 600
+    }
+
+
+    </style>
+  </head>
+  <body>
+    <h1 align="center">Body Seqgmentation</h1>
+    <br/>
+    <table style="width:80%">
+      <tr>
+      <td colspan="5">
+        <div class="select">
+        <label for="videoSource">Video Source: </label><select class="dropdown" id="videoSource"></select>
+        </div>
+      </td>
+      </tr>
+      <tr>
+      <td colspan="5">
+        <br/>
+        <br/>
+        <div class="video">
+        <!-- Add an image that we will use to test -->
+        <video class='center' autoplay playsinline muted id="webcam" width="500" height="500"></video>
+        <br/>
+        <br/>
+        </div>
+      </td>
+      <td colspan="5">
+        <br/>
+        <br/>
+        <canvas id="canvas" width="200" height="100" style="border:1px solid #000000;></canvas>
+        <br/>
+        <br/>
+        </div>
+      </td>
+    </tr>
+    </table>
+    <div>
+      <br/>
+      <br/>
+    </div>
+    <div id="bottom">
+      <button class="prediction" id="prediction">None</button>
+    </div>
+    <script src="body.js"></script>
+  </body>
+</html>
